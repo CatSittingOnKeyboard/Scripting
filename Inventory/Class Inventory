@@ -45,6 +45,7 @@ class Inventory {
   receiveString_delete(string) {
     let items = this.parse_remove_item(string);
     let items_defined = this.defineItems(items);
+    console.log(items_defined)
     this.remove_items(items_defined);
   }
   add_items(items_defined) {
@@ -79,20 +80,35 @@ class Inventory {
     }
   }
   remove_items(items_defined) {
-    for(let i_item = state.inventory.length-1; i_item >= 0; i_item--) {
-      for(let item_remove of items_defined) {
+    let items_notHave = [];
+      for(let i_item = state.inventory.length-1; i_item >= 0; i_item--) {
+        for(let item_remove of items_defined) {
         if(state.inventory[i_item].name == item_remove.name) {
           while(item_remove.quantity > state.inventory[i_item].quantity && item_remove.quantity > 0) {
             item_remove.quantity--;
             console.log('remove quantity of'+state.inventory[i_item].name+'decreased to'+item_remove.quantity);
           }
           state.inventory[i_item].quantity -= item_remove.quantity;
-
         }
+        items_notHave.push(item_remove.name);
       }
       if(state.inventory[i_item].quantity <= 0) {
         state.inventory.splice(i_item, 1);
       }
+    }
+    if(state.inventory.length == 0) {
+      for(let i = 0; i < items_defined.length; i++) {
+        items_notHave.push(items_defined[i].name);
+      }
+    }
+    if(items_notHave.length > 0) {
+      let items_notHave_string = items_notHave.join(', ');
+      let stringBegins = [
+        'You try to grab your ',
+        'You reach into your bag to try to find your ',
+        'You try to find your ',
+      ];
+      this.output += stringBegins[Math.floor(Math.random()*stringBegins.length)]+items_notHave_string+' but you don\'t have that in your bag. '; 
     }
   }
   defineItems(items_str) {
@@ -170,21 +186,10 @@ class Inventory {
       else {
         items_str = items_array[3];
       }
-
-      // OUTPUT
-      if(this.output == '') {
-        this.output += ' You remove '+items_str+' from your bag. ';
-      }
-      else {
-        this.output += ' and you remove '+items_str+' from your bag. ';
-      }
     }
     return(items_str);
   }
   parse_remove_item2(string) {
-    //idea: use this second parser to use another regex so that if the string is 'take out your sword' it will work, instead of having to write 'take out your sword from your bag',
-    //achieve this by substituting the 'sword' part for inventory items array
-
     //CURRENTLY NOT AN ACTIVE FUNCTION
     let items_array = [];
     let items_str = '';
@@ -206,7 +211,6 @@ class Inventory {
       this.output = this.showInventory();
     }
   }
-
   showInventory() {
     let final_str = '';
     let items_str = '';
@@ -227,4 +231,12 @@ class Inventory {
     }
     return(final_str);
   }
+  findArticle(string) {
+      //finds the article for a specific word (A potato/ AN apple)
+      if(string.match(/^(?:a|e|i|o|u)/i)) {
+        return('an');
+      } else {
+        return('a');
+      }
+    }
 }
