@@ -59,8 +59,8 @@ Implementation
 To use this in your script:
 
 1. Add the inventory class to shared library
-2. Create a new object in input modifier that is the inventory class (see example file)
-3. call the update method of that object and pass in the text in lowercase (see example file)
+2. Copy the input modifier script and paste into your input modifier
+3. Copy the output modifier script and paste into your output modifier
 
 </pre>
 Manualy Adding/Removing items in script
