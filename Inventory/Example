@@ -1,3 +1,24 @@
+// INPUT MODIFIER
+
+const modifier = (text) => {
+  let modifiedText = text
+  const lowered = text.toLowerCase()
+  
+  let bag = new Inventory();
+  
+  bag.update(lowered);
+  state.message = bag.output;
+  state.output = bag.output;
+  
+  console.log(state.inventory);
+    
+  // You must return an object with the text property defined.
+  return { text: modifiedText }
+}
+
+// Don't modify this part
+modifier(text)
+
 //SHARED LIBRARY
 
 class Inventory {
@@ -228,25 +249,3 @@ class Inventory {
     return(final_str);
   }
 }
-
-//INPUT MODIFIER
-
-const modifier = (text) => {
-  let modifiedText = text
-  const lowered = text.toLowerCase()
-  
-  let bag = new Inventory();
-  
-  bag.update(lowered);
-  state.message = bag.output;
-  state.output = bag.output;
-  
-  console.log(state.inventory);
-    
-  // You must return an object with the text property defined.
-  return { text: modifiedText }
-}
-
-// Don't modify this part
-modifier(text)
-
