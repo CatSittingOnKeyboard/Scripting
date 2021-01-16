@@ -30,6 +30,8 @@ The quantity = (the digit infront of the name), must be a single digit, meaning 
 Stacking
 <pre>
 This script uses stacking to keep things neater.
+
+Plural Example:
 If you add an item using the plural form
 Ex. You add 2 cups of tea to your bag.
 
@@ -38,14 +40,18 @@ Ex. You take a cup of tea out of your bag.
 
 it will not work, because the items you stored where stored using a plural name.
 
-using this example it would work to say
+Using this example it would work to say
 Ex. You take a cups of tea out of your bag.
 
 but that may sound to odd or be difficult to remember,
 so it is best to simply not using plural when adding or removing items.
 
-Non Plural example
-Ex.
+Non Plural Example:
+Ex. You add 2 cup of tea to your bag.
+
+Ex. You take a cup of tea out of your bag.
+
+This will work just fine because each time the same name was used.
 
 </pre>
 Implementation
