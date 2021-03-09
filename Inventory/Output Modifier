@@ -2,9 +2,10 @@ const modifier = (text) => {
   let modifiedText = text
   const lowered = text.toLowerCase()
   
-  if(state.output !== '') {
-   modifiedText = state.output; 
-  }
+  //uncomment if you want the output to be set to what you picked up/dropped (may cause issues)
+  //if(state.output !== '') {
+  // modifiedText = state.output; 
+  //}
   
   // You must return an object with the text property defined.
   return { text: modifiedText }
